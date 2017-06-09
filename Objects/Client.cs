@@ -47,6 +47,11 @@ namespace HairSalon
       }
     }
 
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
+
     public static List<Client> GetAll()
     {
       List<Client> allClients = new List<Client>{};
@@ -78,10 +83,7 @@ namespace HairSalon
       return allClients;
     }
 
-    public static List<Client> GetParticularClientsForStylist(int stylistId)
-    {
-      
-    }
+
 
     public void Save()
     {

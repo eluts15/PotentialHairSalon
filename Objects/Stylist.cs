@@ -40,6 +40,12 @@ namespace HairSalon
         return (idEquality && nameEquality);
       }
     }
+  
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
+
 
     public static List<Stylist> GetAll()
     {

@@ -15,7 +15,7 @@ namespace HairSalon
 
     //Tests will go below.
 
-    [Fact] //Verify an empty database as we don't want to mess anything up if it is already in use.
+    [Fact] //Verify an empty database as we don't want to mess anything up if it is already populated.
     public void Test_DatabaseEmptyAtFirst()
     {
       //Arrange
