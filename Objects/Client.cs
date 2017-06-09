@@ -83,8 +83,6 @@ namespace HairSalon
       return allClients;
     }
 
-
-
     public void Save()
     {
       SqlConnection conn = DB.Connection();
