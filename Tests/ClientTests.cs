@@ -49,7 +49,20 @@ namespace HairSalon
       Assert.Equal(search, found);
     }
 
-
+    [Fact]
+    public void Test_Update_UpdateClient()
+    {
+      //Arrange
+      string name = "Billy the Goat";
+      Client testClient = new Client(name, 1);
+      testClient.Save();
+      string updateName = "Billy the Giraffe";
+      //Act
+      testClient.Update(updateName);
+      string result = testClient.GetName();
+      //Assert
+      Assert.Equal(updateName, result);
+    }
 
     public void Dispose()
     {

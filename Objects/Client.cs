@@ -6,46 +6,48 @@ namespace HairSalon
 {
   public class Client
   {
-    private int _stylistId;
     private string _name;
+    private int _stylistId; //A client also needs reference to a particular stylist.
+
     private int _id;
 
     public Client(string clientName, int stylistId, int clientId=0)
     {
-      _stylistId = stylistId;
       _name = clientName;
+      _stylistId = stylistId;
+
       _id = clientId;
     }
 
-    //Getters, Setters
-    public int GetStylistId()
-    {
-      return _stylistId;
-    }
+    //Getters
     public string GetName()
     {
       return _name;
+    }
+    public int GetStylistId()
+    {
+      return _stylistId;
     }
     public int GetId()
     {
       return _id;
     }
 
-    public void SetStylistId(int newStylist)
-    {
-      _stylistId = newStylist;
-    }
-
+    //Setters
     public void SetName(string newName)
     {
       _name = newName;
     }
-
+    public void SetStylistId(int newStylist)
+    {
+      _stylistId = newStylist;
+    }
     public void SetId(int newId)
     {
       _id = newId;
     }
 
+    //Overrides, What if a Stylist has multiple clients who share the same name?
     public override bool Equals(System.Object otherClient)
     {
       if (!(otherClient is Client))
@@ -55,11 +57,11 @@ namespace HairSalon
       else
       {
         Client newClient = (Client) otherClient;
+        bool nameEquality = (this.GetName() == newClient.GetName());
         bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
         bool idEquality = (this.GetId() == newClient.GetId());
-        bool nameEquality = (this.GetName() == newClient.GetName());
 
-        return (idEquality && nameEquality && stylistIdEquality); //int, string, int
+        return (nameEquality && stylistIdEquality && idEquality);
       }
     }
 
@@ -165,6 +167,43 @@ namespace HairSalon
       }
 
       return found;
+    }
+
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET client_name = @NewName OUTPUT INSERTED.client_name WHERE id = @ClientId;", conn);
+
+      SqlParameter newNameParam = new SqlParameter();
+      newNameParam.ParameterName = "@NewName";
+      newNameParam.Value = newName;
+      cmd.Parameters.Add(newNameParam);
+
+      SqlParameter clientIdParam = new SqlParameter();
+      clientIdParam.ParameterName = "@ClientId";
+      clientIdParam.Value = this.GetId();
+      cmd.Parameters.Add(clientIdParam);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      // cmd.Parameters.Add(clientNameParam);
+      // SqlParameter clientIdParam = new SqlParameter("@ClientId", this.GetId());
+      // cmd.Parameters.Add(clientIdParam);
+      // SqlDataReader rdr = cmd.ExecuteReader();
+      //
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
