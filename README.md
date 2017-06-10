@@ -21,6 +21,8 @@ In order to get server up and running, run the following command:
 
   dnx run
 
+Now navigate to localhost:5004
+
 Runs on the .Net Framework
 
 Requires Nancy Web Framework located at: http://nancyfx.org/. You can also do this via Windows PowerShell with the Command:

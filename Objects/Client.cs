@@ -187,11 +187,6 @@ namespace HairSalon
       cmd.Parameters.Add(clientIdParam);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      // cmd.Parameters.Add(clientNameParam);
-      // SqlParameter clientIdParam = new SqlParameter("@ClientId", this.GetId());
-      // cmd.Parameters.Add(clientIdParam);
-      // SqlDataReader rdr = cmd.ExecuteReader();
-      //
       while(rdr.Read())
       {
         this._name = rdr.GetString(0);
@@ -200,6 +195,26 @@ namespace HairSalon
       {
         rdr.Close();
       }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId; DELETE FROM stylists WHERE client_id = @ClientId;", conn);
+
+      SqlParameter clientIdParam = new SqlParameter();
+      clientIdParam.ParameterName = "@ClientId";
+      clientIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(clientIdParam);
+      cmd.ExecuteNonQuery();
+
       if(conn != null)
       {
         conn.Close();
