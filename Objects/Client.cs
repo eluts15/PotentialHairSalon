@@ -78,6 +78,11 @@ namespace HairSalon
       return allClients;
     }
 
+    public static List<Client> GetParticularClientsForStylist(int stylistId)
+    {
+      
+    }
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -111,6 +116,8 @@ namespace HairSalon
         conn.Close();
       }
     }
+
+
 
     public static void DeleteAll()
     {

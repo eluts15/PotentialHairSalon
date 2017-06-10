@@ -70,6 +70,41 @@ namespace HairSalon
       return allStylists; //Return the list that was created.
     }
 
+    //Search by a particular stylist's name
+    public static Stylist FindStylists(int searchId)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @searchId;", conn);
+      SqlParameter clientIdParam = new SqlParameter();
+      clientIdParam.ParameterName = "@searchId";
+      clientIdParam.Value = searchId.ToString();
+      cmd.Parameters.Add(clientIdParam);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int stylistId = 0;
+      string stylistName = "";
+
+      while(rdr.Read())
+      {
+        stylistId = rdr.GetInt32(0);
+        stylistName = rdr.GetString(1);
+      }
+
+      Stylist newStylist = new Stylist(stylistName, stylistId);
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return newStylist;
+    }
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();
@@ -106,7 +141,5 @@ namespace HairSalon
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-
-
   }
 }

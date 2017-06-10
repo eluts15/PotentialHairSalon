@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
+  [Collection("HairSalon")]
   public class StylistClientTests: IDisposable
   {
     public StylistClientTests()
@@ -14,7 +15,7 @@ namespace HairSalon
 
     //Tests will go below.
 
-    [Fact]
+    [Fact] //Verify an empty database as we don't want to mess anything up if it is already in use.
     public void Test_DatabaseEmptyAtFirst()
     {
       //Arrange
@@ -28,7 +29,7 @@ namespace HairSalon
     public void Test_Stylist_Save_SaveToDB()
     {
       //Arrange
-      Stylist bob = new Stylist("Bob");
+      Stylist bob = new Stylist("Bob the SuperStylist");
       //Act
       bob.Save();
       List<Stylist> result = Stylist.GetAll();
@@ -41,7 +42,7 @@ namespace HairSalon
     public void Test_Client_Save_SaveToDB()
     {
       //Arrange
-      Client testClient = new Client(1,"Jimmy", 1);
+      Client testClient = new Client(1,"Jimmy the Client", 1); //Verify datatypes are equal as expected.
       //Act
       testClient.Save();
       List<Client> result = Client.GetAll();

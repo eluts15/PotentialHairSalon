@@ -2,11 +2,18 @@
 
 ## Specification
 
-| Behavior | Input | Output |
-| :-------------     | :------------- | :------------- |
-| | | |
-| | | |
-| | | |
+| Behavior | Input | Output | Description of Specification |
+| :-------------     | :------------- | :------------- | :------------- |
+| Start with nothing in database to begin with.| | | Verify that there is nothing in the database as we don't want to mess anything up if the database is currently already in use. |
+
+| Has the ability to add future stylists to the database. | "Bob the SuperStylist" | "Bob the SuperStylist" | Add stylist's name to the database. |
+| Has the ability to update stylist's information in database. | "Bob the SuperStylist" | "Bob the DemotedStylist:(" | Update a stylist's existing information in the database. |
+| Has the ability to remove stylists who no longer work at the salon. | "Bob the DemotedStylist" | NULL | Update a stylist's information in the database by removing them. |
+
+| Has the ability to add future clients to the database. | "Jimmy the Client" | "Jimmy the Client" | Add a client to the database for future reference. |
+| Has the abilty to update client/user information. | "Jimmy the Bad Client" | "Jimmy the Bad Client" | Update a client's existing information in the database. |
+| Has the ability to remove clients that no longer go to the salon. | "Jimmy the Client" | NULL | Update a clients information in the database by removing them. |
+
 
 ## Installation/Prerequisites
 
@@ -40,10 +47,6 @@ Run dnu restore if necessary to update dependencies.
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-
-## Credits
-
-Motivating text from the Phantom Tollbooth by Norton Juster
 
 ## Known Bugs
 
