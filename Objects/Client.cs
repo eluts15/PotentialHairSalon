@@ -80,11 +80,11 @@ namespace HairSalon
 
       while(rdr.Read())
       {
-        string clientName = rdr.GetString(0); //string
-        int clientId = rdr.GetInt32(1); //int
+        int clientId = rdr.GetInt32(0); //int
+        string clientName = rdr.GetString(1); //string
         int clientStylistId = rdr.GetInt32(2); //int
 
-        Client newClient = new Client(clientName, clientStylistId, clientId); //int, string, int
+        Client newClient = new Client(clientName, clientStylistId, clientId); //string, int, int
         allClients.Add(newClient);
       }
       if (rdr != null)
