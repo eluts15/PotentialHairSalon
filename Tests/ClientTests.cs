@@ -28,26 +28,28 @@ namespace HairSalon
     public void Test_Client_Save_SaveToDB()
     {
       //Arrange
-      Client testClient = new Client(1, "Jimmy the Client"); //Verify datatypes are equal as expected.
+      Client testClient = new Client(1, "Jimmy the Client", 1); //Verify datatypes are equal as expected.
       //Act
       testClient.Save();
       List<Client> result = Client.GetAll();
       List<Client> testList = new List<Client>{testClient};
       //Assert
-      Assert.Equal(testList, result);
+      Assert.Equal(result, testList);
     }
 
     [Fact]
     public void Test_FindClient()
     {
       //Arrange
-      Client search = new Client(1, "Jimmy the Client");
+      Client search = new Client(1, "Jimmy the Client", 1);
       //Act
       search.Save();
       Client found = Client.Find(search.GetId());
       //Assert
-      Assert.Equal(found, search);
+      Assert.Equal(search, found);
     }
+
+
 
     public void Dispose()
     {

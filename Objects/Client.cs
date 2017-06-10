@@ -88,15 +88,15 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (client_name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (client_name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @Id);", conn); //client_name and stylist_id correspond to columns in DB.
 
-      SqlParameter nameParam = new SqlParameter();
-      nameParam.ParameterName = "@ClientName";
-      nameParam.Value =this.GetName();
+      SqlParameter nameParam = new SqlParameter("@ClientName", this.GetName());
+      // nameParam.ParameterName = "@ClientName";
+      //nameParam.Value =this.GetName();
 
-      SqlParameter stylistIdParam = new SqlParameter();
-      stylistIdParam.ParameterName = "@ClientId";
-      stylistIdParam.Value = this.GetStylistId();
+      SqlParameter stylistIdParam = new SqlParameter("@Id", this.GetStylistId());
+      // stylistIdParam.ParameterName = "@ClientId";
+      // stylistIdParam.Value = this.GetStylistId();
 
       cmd.Parameters.Add(nameParam);
       cmd.Parameters.Add(stylistIdParam);
