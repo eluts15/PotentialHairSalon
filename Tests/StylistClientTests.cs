@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  public class StylistClientTests : IDisposable
+  public class StylistClientTests
   {
     public StylistClientTests()
     {
@@ -13,5 +13,19 @@ namespace HairSalon
     }
 
     //Tests will go below.
+    [Fact]
+    public void Test_DatabaseEmptyAtFirst()
+    {
+      //Arrange
+      int stylistResult = Stylist.GetAll().Count;
+      int clientResult = Client.GetAll().Count;
+      //Assert
+      Assert.Equal(0, stylistResult + clientResult);
+    }
+
+    // public void Dispose()
+    // {
+    //
+    // }
   }
 }
