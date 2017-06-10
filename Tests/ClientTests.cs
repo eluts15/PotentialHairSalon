@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  [Collection("HairSalonPlsWork")]
+  [Collection("HairSalon")]
   public class ClientTests: IDisposable
   {
     public ClientTests()
@@ -28,7 +28,7 @@ namespace HairSalon
     public void Test_Client_Save_SaveToDB()
     {
       //Arrange
-      Client testClient = new Client(1,"Jimmy the Client"); //Verify datatypes are equal as expected.
+      Client testClient = new Client(1, "Jimmy the Client"); //Verify datatypes are equal as expected.
       //Act
       testClient.Save();
       List<Client> result = Client.GetAll();
@@ -41,12 +41,12 @@ namespace HairSalon
     public void Test_FindClient()
     {
       //Arrange
-      Client search = new Client(1, "Jimmy the Client", 1);
+      Client search = new Client(1, "Jimmy the Client");
       //Act
       search.Save();
       Client found = Client.Find(search.GetId());
       //Assert
-      Assert.Equal(search, found);
+      Assert.Equal(found, search);
     }
 
     public void Dispose()
