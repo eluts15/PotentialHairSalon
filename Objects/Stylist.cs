@@ -40,7 +40,7 @@ namespace HairSalon
         return (idEquality && nameEquality);
       }
     }
-  
+
     public override int GetHashCode()
     {
       return this.GetName().GetHashCode();
@@ -77,20 +77,19 @@ namespace HairSalon
     }
 
     //Search by a particular stylist's name
-    public static Stylist FindStylists(int searchId)
+    public static Stylist Find(int searchById)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @searchId;", conn);
-      SqlParameter clientIdParam = new SqlParameter();
-      clientIdParam.ParameterName = "@searchId";
-      clientIdParam.Value = searchId.ToString();
-      cmd.Parameters.Add(clientIdParam);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @Id;", conn);
+      SqlParameter stylistIdParam = new SqlParameter("@Id", searchById.ToString());
+      // clientIdParam.Value = searchById.ToString();
+      cmd.Parameters.Add(stylistIdParam);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       int stylistId = 0;
-      string stylistName = "";
+      string stylistName = null;
 
       while(rdr.Read())
       {

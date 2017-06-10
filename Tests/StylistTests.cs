@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 
 namespace HairSalon
 {
-  [Collection("HairSalon")]
-  public class StylistClientTests: IDisposable
+  [Collection("HairSalonPlsWork")]
+  public class StylistTests: IDisposable
   {
-    public StylistClientTests()
+    public StylistTests()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
     }
@@ -20,9 +20,8 @@ namespace HairSalon
     {
       //Arrange
       int stylistResult = Stylist.GetAll().Count;
-      int clientResult = Client.GetAll().Count;
       //Assert
-      Assert.Equal(0, stylistResult + clientResult);
+      Assert.Equal(0, stylistResult);
     }
 
     [Fact] //Verify we are saving stylist to our Database.
@@ -38,36 +37,11 @@ namespace HairSalon
       Assert.Equal(result, testList);
     }
 
-    [Fact] //Verify we are saving clients to our Database.
-    public void Test_Client_Save_SaveToDB()
-    {
-      //Arrange
-      Client testClient = new Client(1,"Jimmy the Client", 1); //Verify datatypes are equal as expected.
-      //Act
-      testClient.Save();
-      List<Client> result = Client.GetAll();
-      List<Client> testList = new List<Client>{testClient};
-      //Assert
-      Assert.Equal(result, testList);
-    }
-
-    [Fact]
-    public void Test_FindClient()
-    {
-      //Arrange
-      Client search = new Client(1, "Jimmy the Client", 1);
-      //Act
-      search.Save();
-      Client found = Client.Find(search.GetId());
-      //Assert
-      Assert.Equal(search, found);
-    }
-
     [Fact]
     public void Test_FindStylist()
     {
       //Arrange
-      Stylist search = new Stylist("Ricky Bobby the Great");
+      Stylist search = new Stylist("Ricky Bobby the Great Stylist");
       //Act
       search.Save();
       Stylist found = Stylist.Find(search.GetId());

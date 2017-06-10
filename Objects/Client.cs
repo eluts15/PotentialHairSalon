@@ -88,10 +88,10 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (client_name, stylist_id) OUTPUT INSERTED.id VALUES (@clientName, @ClientId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (client_name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientId);", conn);
 
       SqlParameter nameParam = new SqlParameter();
-      nameParam.ParameterName = "@clientName";
+      nameParam.ParameterName = "@ClientName";
       nameParam.Value =this.GetName();
 
       SqlParameter stylistIdParam = new SqlParameter();
@@ -117,13 +117,13 @@ namespace HairSalon
       }
     }
 
-    public static Client Find(int id)
+    public static Client Find(int searchById)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
-      SqlParameter findClientById = new SqlParameter("@ClientId", id.ToString());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @SearchById;", conn);
+      SqlParameter findClientById = new SqlParameter("@SearchById", searchById.ToString());
       cmd.Parameters.Add(findClientById);
       SqlDataReader rdr = cmd.ExecuteReader();
 
