@@ -37,19 +37,19 @@ namespace HairSalon
       Assert.Equal(result, testList);
     }
 
-    // [Fact] //Verify we are saving clients to our Database.
-    // public void Test_Client_Save_SaveToDB()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Jimmy the client");
-    //   //Act
-    //   testClient.Save();
-    //   List<Client> result = Client.GetAll();
-    //   List<Client> testList = new List<Client>{testClient};
-    //   //Assert
-    //   Assert.Equal(result, testList);
-    // }
-    // 
+    [Fact] //Verify we are saving clients to our Database.
+    public void Test_Client_Save_SaveToDB()
+    {
+      //Arrange
+      Client testClient = new Client(1,"Jimmy", 1);
+      //Act
+      testClient.Save();
+      List<Client> result = Client.GetAll();
+      List<Client> testList = new List<Client>{testClient};
+      //Assert
+      Assert.Equal(result, testList);
+    }
+
     public void Dispose()
     {
       Stylist.DeleteAll();
