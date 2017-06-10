@@ -10,13 +10,14 @@ namespace HairSalon
     private string _name;
     private int _id;
 
-    public Client(int stylistId, string clientName, int clientId=0)
+    public Client(string clientName, int stylistId, int clientId=0)
     {
       _stylistId = stylistId;
       _name = clientName;
       _id = clientId;
     }
 
+    //Getters, Setters
     public int GetStylistId()
     {
       return _stylistId;
@@ -28,6 +29,21 @@ namespace HairSalon
     public int GetId()
     {
       return _id;
+    }
+
+    public void SetStylistId(int newStylist)
+    {
+      _stylistId = newStylist;
+    }
+
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
+
+    public void SetId(int newId)
+    {
+      _id = newId;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -64,11 +80,11 @@ namespace HairSalon
 
       while(rdr.Read())
       {
-        int clientId = rdr.GetInt32(0); //int
-        string clientName = rdr.GetString(1); //string
+        string clientName = rdr.GetString(0); //string
+        int clientId = rdr.GetInt32(1); //int
         int clientStylistId = rdr.GetInt32(2); //int
 
-        Client newClient = new Client(clientId, clientName, clientStylistId); //int, string, int
+        Client newClient = new Client(clientName, clientStylistId, clientId); //int, string, int
         allClients.Add(newClient);
       }
       if (rdr != null)
@@ -137,7 +153,7 @@ namespace HairSalon
         clientFoundByName = rdr.GetString(1);
         foundClientForStylist = rdr.GetInt32(2);
       }
-      Client found = new Client(clientFoundById, clientFoundByName, foundClientForStylist);
+      Client found = new Client(clientFoundByName, foundClientForStylist, clientFoundById);
 
       if(rdr != null)
       {
