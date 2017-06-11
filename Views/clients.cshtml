@@ -1,0 +1,23 @@
+<h1>Clients</h1>
+<hr />
+
+@if (@Model.Count == 0)
+{
+  <p>There are currently no clients.</p>
+}
+else
+{
+  <h3>Clients</h3>
+  <ul>
+    @foreach (var client in @Model)
+    {
+      <li><a href="/clients/edit/@client.GetId()">@client.GetName()</a></li>
+    }
+  </ul>
+}
+
+<form action="/clients/delete" method="post">
+  <button type="submit">Delete All Clients</button>
+</form>
+<p><a href="/clients/new">Add a new Client</a></p>
+<p><a href="/">Return to Home</a></p>

@@ -21,7 +21,7 @@ In order to get server up and running, run the following command:
 
   dnx run
 
-Now navigate to localhost:5004
+Now, navigate to localhost:5004
 
 Runs on the .Net Framework
 
