@@ -79,10 +79,6 @@ namespace HairSalon
         Client thisClient = Client.Find(param.id);
         return View["delete-client.cshtml", thisClient];
       };
-
-
-
-
     }
   }
 }

@@ -7,12 +7,12 @@ namespace HairSalon
 {
   public class Stylist
   {
-    private string _type;
+    private string _name;
     private int _id;
 
     public Stylist(string Name, int StylistId=0)
     {
-      _type = Name;
+      _name = Name;
       _id = StylistId;
     }
 
@@ -22,7 +22,7 @@ namespace HairSalon
     }
     public string GetName()
     {
-      return _type;
+      return _name;
     }
 
     public override bool Equals(System.Object otherStylist)
