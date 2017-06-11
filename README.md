@@ -35,22 +35,20 @@ All being said, the project also includes the project.lock.json so you can just 
 
 Run dnu restore if necessary to update dependencies.
 
+#TODO
+
+1. Add the ability to update a particular client and/or stylist's information.
+2. Using DATETIME allow for the ability to make appointments between a client and a particular stylist.
 
 ## Usage
 
 1. Behavior Driven Development with the  Nancy Web Framework.
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+2. Working with SQL queries using SSMS.
 
 ## Known Bugs
 
-1. None!
+1. Navigating to list of clients via the home page and clicking on a particular client link causes a 400 error.
+   What should happen is clicking on a client refers you to their stylist.
 
 ## License
 
