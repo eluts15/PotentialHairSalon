@@ -67,27 +67,17 @@ namespace HairSalon
     // [Fact]
     // public void Test_Delete_DeleteClientFromDB()
     // {
-    //   //Arrange
-    //   string name1 = "Fox McCloud";
-    //   Client testClient1 = new Client(name1);
-    //   testClient1.Save();
-    //
-    //   string name2 = "Falco Lombardi";
-    //   Client testClient2 = new Client(name2);
-    //   testClient2.Save();
-    //
-    //   Stylist testStylist1 = new Stylist("Mario", testClient1.GetId());
-    //   Stylist testStylist2 = new Stylist("Luigi", testClient2.GetId());
-    //   //Act
-    //   testClient1.Delete();
-    //   List<Client> resultClients = new Client.GetAll();
-    //   List<Client> testClientList = new List<Client> {testClient2};
-    //   List<Stylist> resultStylists = Stylist.GetAll();
-    //   List<Stylist> testStylistList = new List<Stylist> {testStylist2};
+    //   //Arrange, Act
+    //   string name = "Fox McCloud";
+    //   Client testClient = new Client(name, 1);
+    //   testClient.Save();
+    //   testClient.Delete();
+    //   List<Client> resultClientList = Client.GetAll();
+    //   List<Client> testClientList = new List<Client> {testClient};
     //   //Assert
-    //   Assert.Equal(testClientList, resultClients);
-    //   Assert.Equal(testStylistList, resultStylists);
+    //   Assert.Equal(resultClientList, testClientList);
     // }
+
 
     public void Dispose()
     {
