@@ -10,22 +10,21 @@ namespace HairSalon
     {
       Get["/"] = _ =>
       {
-        List<Client> allClients = Client.GetAll();
-        return View["index.cshtml", allClients];
+        List<Client> AllClients = Client.GetAll();
+        return View["index.cshtml", AllClients];
       };
 
       Get["/stylists"] = _ =>
       {
-        List<Stylist> allStylists = Stylist.GetAll();
-        return View["stylists.cshtml", allStylists];
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["stylists.cshtml", AllStylists];
       };
-
       Post["/stylists"] = _ =>
       {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
         newStylist.Save();
-        List<Stylist> allStylists = Stylist.GetAll();
-        return View["stylists.cshtml", allStylists];
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["stylists.cshtml", AllStylists];
       };
 
       Get["/stylists/new"] = _ =>
@@ -35,49 +34,76 @@ namespace HairSalon
 
       Get["/stylist/{id}"] = param =>
       {
-        Stylist found = Stylist.Find(param.id);
-        List<Client> foundClients = found.GetClients();
-        return View["stylist.cshtml", foundClients];
+        Stylist Found = Stylist.Find(param.id);
+        List<Client> FoundClients = Found.GetClients();
+        return View["stylist.cshtml", FoundClients];
+      };
+
+      // Get["/stylist/{id}"] = param =>
+      // {
+      //   Dictionary<string, object> model = new Dictionary<string, object>(); //Used to build the model, hence the name model
+      //   Stylist FoundStylist = Stylist.Find(param.id);
+      //   List<Client> ListOfClients = FoundStylist.GetClients();
+      //   model.Add("Stylist: ", FoundStylist);
+      //   model.Add("Clients: ", ListOfClients);
+      //   return View["stylist.cshtml", model];
+      // };
+
+      Get["/stylists/{id}"] = param =>
+      {
+        Stylist FoundStylist = Stylist.Find(param.id);
+        List<Client> ListOfClients = FoundStylist.GetClients();
+        return View["stylist.cshtml", ListOfClients];
       };
 
       Post["/stylists/delete"] = _ =>
       {
         Stylist.DeleteAll();
-        List<Stylist> allStylists = Stylist.GetAll();
-        return View["stylists.cshtml", allStylists];
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["stylists.cshtml", AllStylists];
       };
+
+      // Get["/clients/{id}"] = param =>
+      // {
+      //   Dictionary<string, object> model = new Dictionary<string, object>();
+      //   Client selectedClients = Client.Find(param.id);
+      //   List<Stylist> StylistsClients = selectedClients.GetAll();
+      //   model.Add("client", selectedClients);
+      //   model.Add("stylists", StylistsClients);
+      //   return View["clients.cshtml", model];
+      // };
 
       Get["/clients"] = _ =>
       {
-        List<Client> allClients = Client.GetAll();
-        return View["clients.cshtml", allClients];
+        List<Client> AllClients = Client.GetAll();
+        return View["clients.cshtml", AllClients];
       };
 
       Post["/clients"] = _ =>
       {
         Client newClient = new Client(Request.Form["client-name"], Request.Form["client-stylist"]);
         newClient.Save();
-        List<Client> allClients = Client.GetAll();
-        return View["clients.cshtml", allClients];
+        List<Client> AllClients = Client.GetAll();
+        return View["clients.cshtml", AllClients];
       };
 
       Get["/clients/new"] = _ =>
       {
-        List<Stylist> allStylists = Stylist.GetAll();
-        return View["client-form.cshtml", allStylists];
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["client-form.cshtml", AllStylists];
       };
 
       Post["/clients/delete"] = _ =>
       {
         Client.DeleteAll();
-        List<Client> allClients = Client.GetAll();
-        return View["clients.cshtml", allClients];
+        List<Client> AllClients = Client.GetAll();
+        return View["clients.cshtml", AllClients];
       };
 
       Get["clients/delete/{id}"] = param =>
       {
-        Client thisClient = Client.Find(param.id);
-        return View["delete-client.cshtml", thisClient];
+        Client ThisClient = Client.Find(param.id);
+        return View["delete-client.cshtml", ThisClient];
       };
     }
   }

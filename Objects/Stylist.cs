@@ -41,6 +41,7 @@ namespace HairSalon
       }
     }
 
+    //Tbh, i don't quite understand what this does (yet!), but it removes warnings.
     public override int GetHashCode()
     {
       return this.GetName().GetHashCode();
@@ -54,7 +55,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists;", conn); //Allow ability to access the database, select fields from stylist and act on them.
       SqlDataReader rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -82,9 +83,8 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @Id;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @Id;", conn); //Search the stylist table, and group by a specific id.
       SqlParameter stylistIdParam = new SqlParameter("@Id", searchById.ToString());
-      // clientIdParam.Value = searchById.ToString();
       cmd.Parameters.Add(stylistIdParam);
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -115,19 +115,19 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM  clients WHERE stylist_id = @StylistId", conn);
-      SqlParameter stylistParam = new SqlParameter("@StylistId", this.GetId());
+      SqlCommand cmd = new SqlCommand("SELECT * FROM  clients WHERE stylist_id = @StylistId", conn); //Grep all the clients that belong to a specific stylist!
+      SqlParameter stylistParam = new SqlParameter("@StylistId", this.GetId()); //Instantiate a new object based off the information gathered from the table in the database.
       cmd.Parameters.Add(stylistParam);
       SqlDataReader rdr = cmd.ExecuteReader();
 
       List<Client> allClients = new List<Client>{};
-      while(rdr.Read())
+      while(rdr.Read()) //Read it, until you cant read anymore.nomnomnomnom!
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
         int clientStylistId = rdr.GetInt32(2);
-        Client newClient = new Client(clientName, clientStylistId, clientId);
-        allClients.Add(newClient);
+        Client newClient = new Client(clientName, clientStylistId, clientId); //Instantiate a clientObject that has these properties.
+        allClients.Add(newClient); //Add any new clients to our list of current clients.
       }
       if(rdr != null)
       {
@@ -138,7 +138,7 @@ namespace HairSalon
         conn.Close();
       }
 
-      return allClients;
+      return allClients; //Lastly, return a list of all of our clients.
     }
 
     public void Save()
