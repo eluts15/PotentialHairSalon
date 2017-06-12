@@ -39,6 +39,8 @@ namespace HairSalon
         return View["stylist.cshtml", FoundClients];
       };
 
+
+
       // Get["/stylist/{id}"] = param =>
       // {
       //   Dictionary<string, object> model = new Dictionary<string, object>(); //Used to build the model, hence the name model
@@ -93,6 +95,13 @@ namespace HairSalon
         return View["client-form.cshtml", AllStylists];
       };
 
+      Post["/clients/new"] = _ =>
+      {
+        Client newClient = new Client(Request.Form["client-name"], Request.Form["stylist-name"]);
+        newClient.Save();
+        return View["success.cshtml"];
+      };
+
       Post["/clients/delete"] = _ =>
       {
         Client.DeleteAll();
@@ -104,6 +113,19 @@ namespace HairSalon
       {
         Client ThisClient = Client.Find(param.id);
         return View["delete-client.cshtml", ThisClient];
+      };
+
+      Get["client/edit/{id}"] = param =>
+      {
+        Client SelectedClient = Client.Find(param.id);
+        return View["client_edit.cshtml", SelectedClient];
+      };
+
+      Patch["client/edit/{id}"] = param =>
+      {
+        Client SelectedClient = Client.Find(param.id);
+        SelectedClient.Update(Request.Form["client-name"]);
+        return View["success.cshtml"];
       };
     }
   }
