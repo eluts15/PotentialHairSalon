@@ -195,15 +195,35 @@ namespace HairSalon
       }
     }
 
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+      SqlParameter clientIdParam = new SqlParameter("@ClientId", this.GetId());
+      // clientIdParam.ParameterName = "@ClientId";
+      // clientIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(clientIdParam);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     // public void Delete()
     // {
     //   SqlConnection conn = DB.Connection();
     //   conn.Open();
     //
-    //   SqlParameter clientIdParam = new SqlParameter("@ClientId", this.GetId());
-    //   SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
-    //   // clientIdParam.ParameterName = "@ClientId";
-    //   // clientIdParam.Value = this.GetId();
+    //   SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId; DELETE FROM stylists WHERE id = @ClientId;", conn);
+    //
+    //   SqlParameter clientIdParam = new SqlParameter();
+    //   clientIdParam.ParameterName = "@ClientId";
+    //   clientIdParam.Value = this.GetId();
     //
     //   cmd.Parameters.Add(clientIdParam);
     //   cmd.ExecuteNonQuery();
@@ -213,8 +233,6 @@ namespace HairSalon
     //     conn.Close();
     //   }
     // }
-
-
 
     public static void DeleteAll()
     {

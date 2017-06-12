@@ -64,19 +64,6 @@ namespace HairSalon
       Assert.Equal(updateName, result);
     }
 
-    // [Fact]
-    // public void Test_Delete_DeleteClientFromDB()
-    // {
-    //   //Arrange, Act
-    //   string name = "Fox McCloud";
-    //   Client testClient = new Client(name, 1);
-    //   testClient.Save();
-    //   testClient.Delete();
-    //   List<Client> resultClientList = Client.GetAll();
-    //   List<Client> testClientList = new List<Client> {testClient};
-    //   //Assert
-    //   Assert.Equal(resultClientList, testClientList);
-    // }
 
     [Fact]
     public void Update_UpdatesClientInDB()
@@ -85,12 +72,26 @@ namespace HairSalon
       string name = "John Mayer";
       Client testClient = new Client(name, 2);
       testClient.Save();
-      string newName = "Hayley Williams";
+      string newName = "Hayley Williams is a Goddess";
       //Act
       testClient.Update(newName);
       string result = testClient.GetName();
       //Assert
       Assert.Equal(newName, result);
+    }
+
+    [Fact]
+    public void Test_Delete_DeleteClientFromDB()
+    {
+      //Arrange, Act
+      string name = "Fox McCloud";
+      Client testClient = new Client(name, 1);
+      testClient.Save();
+      testClient.Delete();
+      List<Client> resultClientList = Client.GetAll();
+      List<Client> testClientList = new List<Client> {testClient};
+      //Assert
+      Assert.Equal(resultClientList, testClientList);
     }
 
     public void Dispose()
