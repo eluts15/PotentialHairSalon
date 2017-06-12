@@ -15,7 +15,7 @@
 
 ## Installation/Prerequisites
 
-Git Clone or Download at:
+Git Clone or Download at: https://github.com/eluts15/potential-hair-salon.git
 
 In order to get server up and running, run the following command:
 
@@ -47,8 +47,8 @@ Run dnu restore if necessary to update dependencies.
 
 ## Known Bugs
 
-1. Navigating to list of clients via the home page and clicking on a particular client link causes a 400 error.
-   What should happen is clicking on a client refers you to their stylist.
+1. Deleting a particular client from the "View Current Clients" page causes a 404 error.  This is most likely on the server side since the Test demonstrates that
+it is finding a client object that shouldn't exist.
 
 ## License
 
