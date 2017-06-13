@@ -83,16 +83,20 @@ namespace HairSalon
     [Fact]
     public void Test_Delete_DeleteClientFromDB()
     {
-      //Arrange, Act
+      //Arrange
       string name = "Fox McCloud";
       Client testClient = new Client(name, 1);
+      //Act
       testClient.Save();
-      testClient.Delete();
       List<Client> resultClientList = Client.GetAll();
       List<Client> testClientList = new List<Client> {testClient};
+      testClient.Delete();
+
       //Assert
       Assert.Equal(resultClientList, testClientList);
+
     }
+
 
     public void Dispose()
     {
