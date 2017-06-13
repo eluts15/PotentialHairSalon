@@ -47,8 +47,7 @@ Run dnu restore if necessary to update dependencies.
 
 ## Known Bugs
 
-1. Deleting a particular client from the "View Current Clients" page causes a 404 error.  This is most likely on the server side since the Test demonstrates that
-it is finding a client object that shouldn't exist.
+1. None
 
 ## License
 
