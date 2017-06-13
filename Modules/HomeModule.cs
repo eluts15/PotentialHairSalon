@@ -132,8 +132,15 @@ namespace HairSalon
       {
         Client SelectedClient = Client.Find(param.id);
         SelectedClient.Delete();
-        return View["success.cshtml"];
+        return View["success.cshtml", SelectedClient];
       };
+
+      // Post["clients/delete/{id}"] = param =>
+      // {
+      //   Client SelectedClient = Client.Find(param.id);
+      //   SelectedClient.Delete();
+      //   return View["success.cshtml"];
+      // };
     }
   }
 }
