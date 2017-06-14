@@ -28,8 +28,8 @@ namespace HairSalon
     public void Test_OverrideMethods_ObjectsAreEqualToEachOther()
     {
       //Arrange, Act
-      Client name1 = new Client("Jimie Hendrix", 1);
-      Client name2 = new Client("Jimie Hendrix", 1);
+      Client name1 = new Client("Jimi Hendrix", 1);
+      Client name2 = new Client("Jimi Hendrix", 1);
 
       Assert.Equal(name1, name2);
 
