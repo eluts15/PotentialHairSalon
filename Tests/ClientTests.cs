@@ -24,6 +24,18 @@ namespace HairSalon
       Assert.Equal(0, clientResult);
     }
 
+    [Fact] //I now understand the purpose of this test, I honestly didn't see the point in having it in before, but now realize how it is used to test our Overridden methods.
+    public void Test_OverrideMethods_ObjectsAreEqualToEachOther()
+    {
+      //Arrange, Act
+      Client name1 = new Client("Jimie Hendrix", 1);
+      Client name2 = new Client("Jimie Hendrix", 1);
+
+      Assert.Equal(name1, name2);
+
+
+    }
+
     [Fact] //Verify we are saving clients to our Database.
     public void Test_Client_Save_SaveToDB()
     {

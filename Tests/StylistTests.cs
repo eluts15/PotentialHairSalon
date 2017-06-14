@@ -24,6 +24,14 @@ namespace HairSalon
       Assert.Equal(0, stylistResult);
     }
 
+    [Fact]
+    public void Test_OverrideMethods_ObjectsAreEqualToEachOther()
+    {
+      //Arrange, Act
+      Stylist epicHairStylist1 = new Stylist("Mitch Mitchell", 1);
+      Stylist epicHairStylist2 = new Stylist("Mitch Mitchell", 1);
+    }
+
     [Fact] //Verify we are saving stylist to our Database.
     public void Test_Stylist_Save_SaveToDB()
     {
@@ -63,7 +71,7 @@ namespace HairSalon
       List<Client> resultClientList = testStylist.GetClients();
 
       //Assert
-      Assert.Equal(testClientList, resultClientList);  
+      Assert.Equal(testClientList, resultClientList);
     }
 
     public void Dispose()
