@@ -39,18 +39,6 @@ namespace HairSalon
         return View["stylist.cshtml", FoundClients];
       };
 
-
-
-      // Get["/stylist/{id}"] = param =>
-      // {
-      //   Dictionary<string, object> model = new Dictionary<string, object>(); //Used to build the model, hence the name model
-      //   Stylist FoundStylist = Stylist.Find(param.id);
-      //   List<Client> ListOfClients = FoundStylist.GetClients();
-      //   model.Add("Stylist: ", FoundStylist);
-      //   model.Add("Clients: ", ListOfClients);
-      //   return View["stylist.cshtml", model];
-      // };
-
       Get["/stylists/{id}"] = param =>
       {
         Stylist FoundStylist = Stylist.Find(param.id);
@@ -64,16 +52,6 @@ namespace HairSalon
         List<Stylist> AllStylists = Stylist.GetAll();
         return View["stylists.cshtml", AllStylists];
       };
-
-      // Get["/clients/{id}"] = param =>
-      // {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   Client selectedClients = Client.Find(param.id);
-      //   List<Stylist> StylistsClients = selectedClients.GetAll();
-      //   model.Add("client", selectedClients);
-      //   model.Add("stylists", StylistsClients);
-      //   return View["clients.cshtml", model];
-      // };
 
       Get["/clients"] = _ =>
       {
@@ -102,13 +80,6 @@ namespace HairSalon
         return View["success.cshtml"];
       };
 
-      Post["/clients/delete"] = _ =>
-      {
-        Client.DeleteAll();
-        List<Client> AllClients = Client.GetAll();
-        return View["clients.cshtml", AllClients];
-      };
-
       Get["client/edit/{id}"] = param =>
       {
         Client SelectedClient = Client.Find(param.id);
@@ -128,19 +99,13 @@ namespace HairSalon
         return View["client-delete.cshtml", ThisClient];
       };
 
-      Delete["clients/delete/{id}"] = param =>
       {
-        Client SelectedClient = Client.Find(param.id);
-        SelectedClient.Delete();
-        return View["success.cshtml", SelectedClient];
+        Post["/clients/delete"] = _ =>
+        Client.DeleteAll();
+        List<Client> AllClients = Client.GetAll();
+        return View["clients.cshtml", AllClients];
       };
 
-      // Post["clients/delete/{id}"] = param =>
-      // {
-      //   Client SelectedClient = Client.Find(param.id);
-      //   SelectedClient.Delete();
-      //   return View["success.cshtml"];
-      // };
     }
   }
 }
