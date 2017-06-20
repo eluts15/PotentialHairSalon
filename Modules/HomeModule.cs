@@ -99,13 +99,14 @@ namespace HairSalon
         return View["client-delete.cshtml", ThisClient];
       };
 
+      Post["/clients/delete"] = _ =>
       {
-        Post["/clients/delete"] = _ =>
         Client.DeleteAll();
         List<Client> AllClients = Client.GetAll();
-        return View["clients.cshtml", AllClients];
+        return View["success.cshtml", AllClients];
       };
 
+      
     }
   }
 }
