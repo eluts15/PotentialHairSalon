@@ -1,6 +1,13 @@
 <h2>Add new Client</h2>
 <hr />
 
+@if (@Model.Count == 0)
+{
+  <p>Please make sure there are stylists before attempting to add a new client.</p>
+}
+else
+{
+
 <form action="/clients" method="post">
   <label for="client-name">Name</label>
   <input type="text" name="client-name">
@@ -14,5 +21,5 @@
 
   <button type="submit">Add new Client</button>
 </form>
-
+}
 <p><a href="/">Return to Home</a></p

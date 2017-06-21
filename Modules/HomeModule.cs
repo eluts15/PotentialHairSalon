@@ -80,25 +80,32 @@ namespace HairSalon
         return View["success.cshtml"];
       };
 
-      Get["client/edit/{id}"] = param =>
+      Get["clients/edit/{id}"] = param =>
       {
         Client SelectedClient = Client.Find(param.id);
         return View["client_edit.cshtml", SelectedClient];
       };
 
-      Patch["client/edit/{id}"] = param =>
+      Patch["clients/edit/{id}"] = param =>
       {
         Client SelectedClient = Client.Find(param.id);
         SelectedClient.Update(Request.Form["client-name"]);
         return View["success.cshtml"];
       };
 
-      Get["clients/delete/{id}"] = param =>
+      Get["client/delete/{id}"] = param =>
       {
         Client ThisClient = Client.Find(param.id);
         return View["client-delete.cshtml", ThisClient];
       };
 
+      Delete["client/delete/{id}"] = param =>
+      {
+        Client SelectedClient = Client.Find(param.id);
+        SelectedClient.Delete();
+        return View["success.cshtml"];
+      };
+      
       Post["/clients/delete"] = _ =>
       {
         Client.DeleteAll();
@@ -106,7 +113,11 @@ namespace HairSalon
         return View["success.cshtml", AllClients];
       };
 
-      
+
+
+
+
+
     }
   }
 }

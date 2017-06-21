@@ -3,7 +3,8 @@
 <h2>Are you really, absolutely sure that you want to delete this thing from existence for ever?</h2>
 <h4>@Model.GetName()</h4>
 
-<form action="/clients/delete/@Model.GetId()" method="post">
+<form action="/client/delete/@Model.GetId()" method="post">
+
   <input type="hidden" name="_method" value="DELETE">
   <button type="submit">Delete Client Forever...</button>
 </form>
